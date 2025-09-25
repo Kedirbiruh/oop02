@@ -1,4 +1,3 @@
-
 enum MeasurementSystem { mm, cm, dm, m, inch, feet }
 
 class Triangle {
@@ -7,26 +6,9 @@ class Triangle {
   final double heightInMm;
   final MeasurementSystem measurementSystem;
 
-  double unitToMmFactor(MeasurementSystem system) {
-  switch (system) {
-    case MeasurementSystem.mm:
-      return 1.0;
-    case MeasurementSystem.cm:
-      return 10.0;
-    case MeasurementSystem.dm:
-      return 100.0;
-    case MeasurementSystem.m:
-      return 1000.0;
-    case MeasurementSystem.inch:
-      return 25.4;
-    case MeasurementSystem.feet:
-      return 304.8;
-  }
-}
-
-  
-  Triangle(this.widthInMm, this.heightInMm)
+  Triangle.mm(this.widthInMm, this.heightInMm)
     : measurementSystem = MeasurementSystem.mm;
+
 
   Triangle.cm(double width, double height)
     : widthInMm = width * 10,
@@ -61,6 +43,34 @@ class Triangle {
     return 'Triangle(width: $widthInMm mm, height: $heightInMm mm, system: $measurementSystem, area: ${areaInMm2.toString} mm²)';
   }
 
+  static double factor(MeasurementSystem measurementSystem) {
+    switch (measurementSystem) {
+      case MeasurementSystem.mm:
+        return 1.0;
+      case MeasurementSystem.cm:
+        return 10.0;
+      case MeasurementSystem.dm:
+        return 100.0;
+      case MeasurementSystem.m:
+        return 1000.0;
+      case MeasurementSystem.inch:
+        return 25.4;
+      case MeasurementSystem.feet:
+        return 304.8;
+    }
+  }
+
+  Triangle(double widthInMm, double heightInMm, this.measurementSystem);
+
+  factory
+  _internal
+  
+
+
+
+
 }
+
+
 
 

@@ -1,8 +1,20 @@
-import 'triangle.dart';
+import '../lib/triangle.dart';
 void main() {
-  var triangle = Triangle.cm(30, 40);
-  print(triangle); 
+  final triangleCm = Triangle.cm(30, 40);
+  print(triangleCm); 
 
-  print("Fläche in cm²: ${triangle.areaInMm2}");
+  print("Fläche in cm²: ${triangleCm.areaInMm2}");
+
+final triangleDm = Triangle.cm(30, 40);
+  print(triangleDm); 
+
+  print("Fläche in cm²: ${triangleDm.areaInMm2}");
+
+
+
+
 }
+
+
+
 
