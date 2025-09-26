@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 enum MeasurementSystem { mm, cm, dm, m, inch, feet }
 
 class Triangle {
@@ -56,6 +54,6 @@ class Triangle {
 
   @override
   String toString() {
-    return 'Triangle(width: $widthInMm mm, height: $heightInMm mm, system: $measurementSystem, area: ${areaInMm2.toString} mm²)';
+    return 'Triangle(width: $widthInMm mm, height: $heightInMm mm, system: $measurementSystem, area: ${areaInMm2.toString()} mm²)';
   }
 }
