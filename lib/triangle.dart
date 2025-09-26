@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 enum MeasurementSystem { mm, cm, dm, m, inch, feet }
 
 class Triangle {
@@ -6,42 +8,31 @@ class Triangle {
   final double heightInMm;
   final MeasurementSystem measurementSystem;
 
-  Triangle.mm(this.widthInMm, this.heightInMm)
-    : measurementSystem = MeasurementSystem.mm;
+  // Privater interner Konstruktor
+  Triangle._internal(this.widthInMm, this.heightInMm, this.measurementSystem);
 
+  // öffentliche Konstruktoren
+  Triangle.mm(double width, double height)
+    : this._internal(width, height, MeasurementSystem.mm);
 
   Triangle.cm(double width, double height)
-    : widthInMm = width * 10,
-      heightInMm = height * 10,
-      measurementSystem = MeasurementSystem.cm;
+    : this._internal(width * 10, height * 10, MeasurementSystem.cm);
 
   Triangle.dm(double width, double height)
-    : widthInMm = width * 100,
-      heightInMm = height * 100,
-      measurementSystem = MeasurementSystem.dm;
+    : this._internal(width * 100, height * 100, MeasurementSystem.dm);
 
   Triangle.m(double width, double height)
-    : widthInMm = width * 1000,
-      heightInMm = height * 1000,
-      measurementSystem = MeasurementSystem.m;
+    : this._internal(width * 1000, height * 1000, MeasurementSystem.m);
 
   Triangle.inch(double width, double height)
-    : widthInMm = width * 25.4,
-      heightInMm = height * 25.4,
-      measurementSystem = MeasurementSystem.inch;
+    : this._internal(width * 25.4, height * 25.4, MeasurementSystem.inch);
 
   Triangle.feet(double width, double height)
-    : widthInMm = width * 304.8,
-      heightInMm = height * 304.8,
-      measurementSystem = MeasurementSystem.feet;
+    : this._internal(width * 304.8, height * 304.8, MeasurementSystem.feet);
 
-  // area in mm2
-  double get areaInMm2 => 0.5 * widthInMm * heightInMm;
-
-  @override
-  String toString() {
-    return 'Triangle(width: $widthInMm mm, height: $heightInMm mm, system: $measurementSystem, area: ${areaInMm2.toString} mm²)';
-  }
+  // Konstruktor mit beliebigem System
+  Triangle.from(double width, double height, MeasurementSystem system)
+    : this._internal(width * factor(system), height * factor(system), system);
 
   static double factor(MeasurementSystem measurementSystem) {
     switch (measurementSystem) {
@@ -60,17 +51,11 @@ class Triangle {
     }
   }
 
-  Triangle(double widthInMm, double heightInMm, this.measurementSystem);
+  // area in mm2
+  double get areaInMm2 => 0.5 * widthInMm * heightInMm;
 
-  factory
-  _internal
-  
-
-
-
-
+  @override
+  String toString() {
+    return 'Triangle(width: $widthInMm mm, height: $heightInMm mm, system: $measurementSystem, area: ${areaInMm2.toString} mm²)';
+  }
 }
-
-
-
-
